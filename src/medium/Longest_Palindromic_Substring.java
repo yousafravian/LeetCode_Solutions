@@ -1,0 +1,36 @@
+package medium;
+
+/*
+https://leetcode.com/problems/longest-palindromic-substring/
+ */
+public class Longest_Palindromic_Substring {
+
+    public static String longestPalindrome(String s) {
+        String maxPalindrome = "";
+        if (s.length() <= 1) return s;
+        for (int i = 0; i < s.length() - 1; i++) {
+            for (int j = s.length() - 1; j > i; j--) {
+                String candidate = s.substring(i, j + 1);
+                if (s.charAt(i) == s.charAt(j) && candidate.length() > maxPalindrome.length() && isPalindrome(candidate)) {
+                    maxPalindrome = candidate;
+                }
+            }
+        }
+        if (maxPalindrome.length() > 0) return maxPalindrome;
+        return s.charAt(0) + "";
+    }
+
+    private static boolean isPalindrome(String s) {
+        if (s == null) return true;
+        for (int i = 0; i <= (s.length() / 2) - 1; i++) {
+            if (s.charAt(i) != s.charAt((s.length() - 1) - i)) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
+        System.out.println(longestPalindrome("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"));
+        System.out.println(System.currentTimeMillis());
+    }
+}
